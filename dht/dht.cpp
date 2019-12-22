@@ -14,6 +14,8 @@ void DHT::init(void) {
 	initialized = true;
 
 	tickcnt = get_tickcnt();
+
+	esp_log_level_set("*", ESP_LOG_INFO);
 }
 
 int DHT::prop_count(void) {

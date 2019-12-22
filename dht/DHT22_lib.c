@@ -166,17 +166,17 @@ uint8_t bitInx = 7;
 
     // Wait Start
 	uSec = getSignalLevel( 20000, 1 );
-//	ESP_LOGI( TAG, "Response = %d", uSec );
+	ESP_LOGI( TAG, "Response = %d", uSec );
 	if( uSec<0 ) return DHT_TIMEOUT_ERROR; 
 
 	uSec = getSignalLevel( 200, 0 );
-//	ESP_LOGI( TAG, "Response = %d", uSec );
+	ESP_LOGI( TAG, "Response = %d", uSec );
 	if( uSec<0 ) return DHT_TIMEOUT_ERROR; 
 
 	// -- 80us up ------------------------
 
 	uSec = getSignalLevel( 200, 1 );
-//	ESP_LOGI( TAG, "Response = %d", uSec );
+	ESP_LOGI( TAG, "Response = %d", uSec );
 	if( uSec<0 ) return DHT_TIMEOUT_ERROR;
 
 	// == No errors, read the 40 data bits ================
@@ -223,6 +223,13 @@ uint8_t bitInx = 7;
 
 	if( dhtData[2] & 0x80 ) 			// negative temp, brrr it's freezing
 		temperature *= -1;
+
+
+	ESP_LOGI( TAG, "Data 0 = %d", dhtData[0] );
+	ESP_LOGI( TAG, "Data 1 = %d", dhtData[1] );
+	ESP_LOGI( TAG, "Data 2 = %d", dhtData[2] );
+	ESP_LOGI( TAG, "Data 3 = %d", dhtData[3] );
+	ESP_LOGI( TAG, "Data 4 = %d", dhtData[4] );
 
 
 	// == verify if checksum is ok ===========================================

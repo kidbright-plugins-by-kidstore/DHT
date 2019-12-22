@@ -2,6 +2,8 @@
 #include "kidbright32.h"
 #include "dht.h"
 
+static const char* TAG = "DHT";
+
 DHT::DHT(int pin) {
 	this->dht_pin = pin;
 

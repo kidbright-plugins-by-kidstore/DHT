@@ -210,15 +210,15 @@ uint8_t bitInx = 7;
 	// == get humidity from Data[0] and Data[1] ==========================
 
 	humidity = dhtData[0];
-	humidity *= 0x100;					// >> 8
-	humidity += dhtData[1];
+	//humidity *= 0x100;					// >> 8
+	//humidity += dhtData[1];
 	// humidity /= 10;						// get the decimal
 
 	// == get temp from Data[2] and Data[3]
 	
 	temperature = dhtData[2] & 0x7F;	
-	temperature *= 0x100;				// >> 8
-	temperature += dhtData[3];
+	//temperature *= 0x100;				// >> 8
+	//temperature += dhtData[3];
 	// temperature /= 10;
 
 	if( dhtData[2] & 0x80 ) 			// negative temp, brrr it's freezing

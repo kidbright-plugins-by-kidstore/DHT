@@ -12,6 +12,8 @@ DHT::DHT(int pin) {
 void DHT::init(void) {
 	error = false;
 	initialized = true;
+
+	tickcnt = get_tickcnt();
 }
 
 int DHT::prop_count(void) {
@@ -51,6 +53,9 @@ void DHT::process(Driver *drv) {
 		if (readDHT() == DHT_OK) {
 			this->humidity = getHumidity();
 			this->temperature = getTemperature();
+		} else {
+			this->humidity = 999;
+			this->temperature = 999;
 		}
 
 		// get current tickcnt

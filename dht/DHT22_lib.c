@@ -45,8 +45,8 @@ void setDHTgpio( int gpio )
 
 // == get temp & hum =============================================
 
-float getHumidity() { return humidity; }
-float getTemperature() { return temperature; }
+float dhtGetHumidity() { return humidity; }
+float dhtGetTemperature() { return temperature; }
 
 // == error handler ===============================================
 

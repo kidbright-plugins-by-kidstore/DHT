@@ -53,8 +53,8 @@ void DHT::process(Driver *drv) {
 		setDHTgpio(this->dht_pin);
 
 		if (readDHT() == DHT_OK) {
-			this->humidity = getHumidity();
-			this->temperature = getTemperature();
+			this->humidity = dhtGetHumidity();
+			this->temperature = dhtGetTemperature();
 		} else {
 			this->humidity = 999;
 			this->temperature = 999;

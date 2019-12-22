@@ -8,13 +8,10 @@
 
 class DHT : public Device {
 	private:
-		enum {
-			s_read, s_wait
-		} state;
-		int blink_status;
-		bool blink_flag;
-
 		int dht_pin = 0;
+
+		float humidity = 0.0;
+		float temperature = 0.0;
 
 	public:
 		TickType_t tickcnt;

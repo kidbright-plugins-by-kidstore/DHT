@@ -45,23 +45,23 @@ bool DHT::prop_write(int index, char *value) {
 
 void DHT::process(Driver *drv) {
 	if (is_tickcnt_elapsed(tickcnt, 500)) {
-		DHT_status ^= 0x01; // toggle status
-		gpio_set_level(BT_LED_GPIO, DHT_status);
+		setDHTgpio(this->dht_pin);
+
+		if (readDHT() == DHT_OK) {
+			this->humidity = getHumidity();
+			this->temperature = getTemperature();
+		}
+
 		// get current tickcnt
 		tickcnt = get_tickcnt();
 	}
 }
 
-void DHT::start(void) {
-	DHT_status = 0;
-	gpio_set_level(BT_LED_GPIO, DHT_status); // active low
-	// get current tickcnt
-	tickcnt = get_tickcnt();
-	DHT_flag = true;
+float DHT::getHumidity() {
+	return this->humidity;
 }
 
-void DHT::stop(void) {
-	DHT_flag = false;
-	DHT_status = 1;
-	gpio_set_level(BT_LED_GPIO, DHT_status); // active low
+float DHT::getTemperature() {
+	return this->temperature;
 }
+

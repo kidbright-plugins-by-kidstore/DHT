@@ -83,7 +83,7 @@ int getSignalLevel( int usTimeOut, bool state )
 {
 
 	int uSec = 0;
-	while( gpio_get_level(DHTgpio)==state ) {
+	while( gpio_get_level((gpio_num_t)DHTgpio)==state ) {
 
 		if( uSec > usTimeOut ) 
 			return -1;
@@ -150,17 +150,17 @@ uint8_t bitInx = 7;
 
 	// == Send start signal to DHT sensor ===========
 
-	gpio_set_direction( DHTgpio, GPIO_MODE_OUTPUT );
+	gpio_set_direction( (gpio_num_t)DHTgpio, GPIO_MODE_OUTPUT );
 
 	// pull down for 3 ms for a smooth and nice wake up 
-	gpio_set_level( DHTgpio, 0 );
+	gpio_set_level( (gpio_num_t)DHTgpio, 0 );
 	ets_delay_us( 3000 );			
 
 	// pull up for 25 us for a gentile asking for data
-	gpio_set_level( DHTgpio, 1 );
+	gpio_set_level( (gpio_num_t)DHTgpio, 1 );
 	ets_delay_us( 25 );
 
-	gpio_set_direction( DHTgpio, GPIO_MODE_INPUT );		// change to input mode
+	gpio_set_direction( (gpio_num_t)DHTgpio, GPIO_MODE_INPUT );		// change to input mode
   
 	// == DHT will keep the line low for 80 us and then high for 80us ====
 

@@ -95,7 +95,7 @@ int DHT::readDHT() {
 
 	// == Send start signal to DHT sensor ===========
 
-	gpio_set_direction((gpio_num_t)this->dht_pin, GPIO_MODE_OUTPUT );
+	gpio_set_direction((gpio_num_t)this->dht_pin, GPIO_MODE_OUTPUT);
 
 	// pull down for 3 ms for a smooth and nice wake up 
 	gpio_set_level((gpio_num_t)this->dht_pin, 0);
@@ -106,7 +106,7 @@ int DHT::readDHT() {
 	ets_delay_us(25);
 
 	gpio_set_direction((gpio_num_t)this->dht_pin, GPIO_MODE_INPUT);		// change to input mode
-	gpio_set_pull_mode((gpio_num_t)this->dht_pin, GPIO_PULLUP_ONLY);
+	// gpio_set_pull_mode((gpio_num_t)this->dht_pin, GPIO_PULLUP_ONLY);
   
 	// == DHT will keep the line low for 80 us and then high for 80us ====
 

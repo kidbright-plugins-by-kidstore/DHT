@@ -132,11 +132,13 @@ int DHT::readDHT() {
 		// -- starts new data transmission with >50us low signal
 
 		uSec = getSignalLevel(100, 0);
+		ESP_LOGI(TAG, "Response LOW = %d", uSec );
 		if(uSec < 0) return DHT_TIMEOUT_ERROR;
 
 		// -- check to see if after >70us rx data is a 0 or a 1
 
 		uSec = getSignalLevel(200, 1);
+		ESP_LOGI(TAG, "Response HIGH = %d", uSec );
 		if(uSec < 0) return DHT_TIMEOUT_ERROR;
 
 		// add the current read to the output data
@@ -145,7 +147,7 @@ int DHT::readDHT() {
 	
 		if (uSec > 40) {
 			dhtData[ byteInx ] |= (1 << bitInx);
-			}
+		}
 	
 		// index to next byte
 

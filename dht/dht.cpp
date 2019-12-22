@@ -52,12 +52,10 @@ bool DHT::prop_write(int index, char *value) {
 
 void DHT::process(Driver *drv) {
 	if (is_tickcnt_elapsed(tickcnt, 500)) {
-		vTaskSuspendAll();
 		if (this->readDHT() != DHT_OK) {
 			this->humidity = 999;
 			this->temperature = 999;
 		}
-		xTaskResumeAll();
 
 		// get current tickcnt
 		tickcnt = get_tickcnt();

@@ -6,6 +6,9 @@
 #include "driver/gpio.h"
 #include "esp_log.h"
 
+#include <stdio.h>
+#include <string.h>
+
 #define DHT_OK 0
 #define DHT_CHECKSUM_ERROR -1
 #define DHT_TIMEOUT_ERROR -2

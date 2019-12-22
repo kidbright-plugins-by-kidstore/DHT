@@ -4,7 +4,6 @@
 #include "driver.h"
 #include "device.h"
 #include "driver/gpio.h"
-#include "DHT22_lib.h"
 #include "esp_log.h"
 
 #define DHT_OK 0

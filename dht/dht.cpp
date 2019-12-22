@@ -10,7 +10,8 @@ DHT::DHT(int pin) {
 }
 
 void DHT::init(void) {
-
+	error = false;
+	initialized = true;
 }
 
 int DHT::prop_count(void) {

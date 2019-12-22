@@ -43,8 +43,7 @@ Blockly.Blocks['dht_get_humidity'] = {
 				]
 			}],
 			"output": [
-				"Number",
-				"Boolean"
+				"Number"
 			],
 			"colour": 180,
 			"tooltip": Blockly.Msg.DHT_GET_HUMIDITY_TOOLTIP,
@@ -71,8 +70,7 @@ Blockly.Blocks['dht_get_temperature'] = {
 				]
 			}],
 			"output": [
-				"Number",
-				"Boolean"
+				"Number"
 			],
 			"colour": 180,
 			"tooltip": Blockly.Msg.DHT_GET_TEMP_TOOLTIP,

@@ -1,6 +1,8 @@
-Blockly.Msg.BLINK_START_TITLE = "Start Blinking LED";
-Blockly.Msg.BLINK_START_TOOLTIP = "Start Blinking LED";
-Blockly.Msg.BLINK_START_HELPURL = "";
-Blockly.Msg.BLINK_STOP_TITLE = "Stop Blinking LED";
-Blockly.Msg.BLINK_STOP_TOOLTIP = "Stop Blinking LED";
-Blockly.Msg.BLINK_STOP_HELPURL = "";
+Blockly.Msg.DHT_INIT_MESSAGE = "DHT pin %1 init";
+Blockly.Msg.DHT_INIT_TOOLTIP = "";
+
+Blockly.Msg.DHT_GET_HUMIDITY_MESSAGE = "DHT pin %1 get humidity";
+Blockly.Msg.DHT_GET_HUMIDITY_TOOLTIP = "";
+
+Blockly.Msg.DHT_GET_TEMP_MESSAGE = "DHT pin %1 get temperature";
+Blockly.Msg.DHT_GET_TEMP_TOOLTIP = "";

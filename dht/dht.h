@@ -5,6 +5,7 @@
 #include "device.h"
 #include "driver/gpio.h"
 #include "DHT22_lib.h"
+#include "esp_log.h"
 
 class DHT : public Device {
 	private:

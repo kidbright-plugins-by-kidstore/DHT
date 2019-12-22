@@ -139,6 +139,8 @@ To request data from DHT:
 
 int readDHT()
 {
+	ESP_LOGI( TAG, "Start DHT");
+
 int uSec = 0;
 
 uint8_t dhtData[MAXdhtData];

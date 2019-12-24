@@ -1,6 +1,7 @@
 Blockly.JavaScript['dht_init'] = function(block) {
 	var dropdown_pin = block.getFieldValue('pin');
-	return 'DEV_IO.DHT(' + dropdown_pin + ').init();';
+	var dropdown_type = block.getFieldValue('type');
+	return 'DEV_IO.DHT(' + dropdown_pin + ').init(' + dropdown_type + ');';
 };
 
 Blockly.JavaScript['dht_get_humidity'] = function(block) {

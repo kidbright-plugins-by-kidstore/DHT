@@ -14,6 +14,13 @@ Blockly.Blocks['dht_init'] = {
 					[ "23", "23" ],
 					[ "17", "17" ]
 				]
+			}, {
+				"type": "field_dropdown",
+				"name": "type",
+				"options": [
+					[ "DHT11", "11" ],
+					[ "DHT22", "22" ]
+				]
 			}],
 			"inputsInline": true,
 			"previousStatement": null,

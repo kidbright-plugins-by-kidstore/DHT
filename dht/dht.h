@@ -18,7 +18,8 @@
 
 class DHT : public Device {
 	private:
-		int dht_pin = 0;
+		uint8_t dht_pin = 0;
+		uint8_t type = 11;
 
 		float humidity = 0.0;
 		float temperature = 0.0;
@@ -34,6 +35,7 @@ class DHT : public Device {
 
 		// override
 		void init(void) ;
+		void init(uint8_t type) ;
 		void process(Driver *drv) ;
 		int prop_count(void) ;
 		bool prop_name(int index, char *name) ;

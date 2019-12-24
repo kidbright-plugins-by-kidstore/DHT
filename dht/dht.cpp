@@ -15,9 +15,15 @@ void DHT::init(void) {
 	error = false;
 	initialized = true;
 
-	tickcnt = get_tickcnt();
+	tickcnt = get_tickcnt() + 600;
 
 	esp_log_level_set("*", ESP_LOG_INFO);
+}
+
+void DHT::init(uint8_t type) {
+	this->type = type;
+
+	this->init();
 }
 
 int DHT::prop_count(void) {
@@ -106,7 +112,7 @@ int DHT::readDHT() {
 	ets_delay_us(25);
 
 	gpio_set_direction((gpio_num_t)this->dht_pin, GPIO_MODE_INPUT);		// change to input mode
-	// gpio_set_pull_mode((gpio_num_t)this->dht_pin, GPIO_PULLUP_ONLY);
+	gpio_set_pull_mode((gpio_num_t)this->dht_pin, GPIO_PULLUP_ONLY);
   
 	// == DHT will keep the line low for 80 us and then high for 80us ====
 
@@ -158,16 +164,21 @@ int DHT::readDHT() {
 	// == get humidity from Data[0] and Data[1] ==========================
 
 	this->humidity = dhtData[0];
-	// humidity *= 0x100;					// >> 8
-	// humidity += dhtData[1];
-	// humidity /= 10;						// get the decimal
+	if (this->type == 22) {
+		humidity *= 0x100;					// >> 8
+		humidity += dhtData[1];
+		humidity /= 10;						// get the decimal
+	}
+	// 
 
 	// == get temp from Data[2] and Data[3]
 	
 	this->temperature = dhtData[2] & 0x7F;	
-	// temperature *= 0x100;				// >> 8
-	// temperature += dhtData[3];
-	// temperature /= 10;
+	if (this->type == 22) {
+		temperature *= 0x100;				// >> 8
+		temperature += dhtData[3];
+		temperature /= 10;
+	}
 
 	if(dhtData[2] & 0x80) 			// negative temp, brrr it's freezing
 		this->temperature *= -1;

@@ -116,20 +116,31 @@ int DHT::readDHT() {
   
 	// == DHT will keep the line low for 80 us and then high for 80us ====
 
+	taskENTER_CRITICAL(&mux);
+
     // Wait Start
 	uSec = getSignalLevel(20000, 1);
 	// ESP_LOGI(TAG, "Response HIGH wait start bit = %d", uSec );
-	if(uSec < 0) return DHT_TIMEOUT_ERROR; 
+	if(uSec < 0) {
+		taskEXIT_CRITICAL(&mux);
+		return DHT_TIMEOUT_ERROR; 
+	}
 
 	uSec = getSignalLevel(200, 0);
 	// ESP_LOGI(TAG, "Response LOW = %d", uSec );
-	if(uSec < 0) return DHT_TIMEOUT_ERROR; 
+	if(uSec < 0) {
+		taskEXIT_CRITICAL(&mux);
+		return DHT_TIMEOUT_ERROR; 
+	}
 
 	// -- 80us up ------------------------
 
 	uSec = getSignalLevel(200, 1);
 	// ESP_LOGI(TAG, "Response HIGH = %d", uSec );
-	if(uSec < 0) return DHT_TIMEOUT_ERROR;
+	if(uSec < 0) {
+		taskEXIT_CRITICAL(&mux);
+		return DHT_TIMEOUT_ERROR; 
+	}
 
 	// == No errors, read the 40 data bits ================
   
@@ -139,13 +150,19 @@ int DHT::readDHT() {
 
 		uSec = getSignalLevel(100, 0);
 		// ESP_LOGI(TAG, "Response LOW = %d", uSec );
-		if(uSec < 0) return DHT_TIMEOUT_ERROR;
+		if(uSec < 0) {
+			taskEXIT_CRITICAL(&mux);
+			return DHT_TIMEOUT_ERROR; 
+		}
 
 		// -- check to see if after >70us rx data is a 0 or a 1
 
 		uSec = getSignalLevel(200, 1);
 		// ESP_LOGI(TAG, "Response HIGH = %d", uSec );
-		if(uSec < 0) return DHT_TIMEOUT_ERROR;
+		if(uSec < 0) {
+			taskEXIT_CRITICAL(&mux);
+			return DHT_TIMEOUT_ERROR; 
+		}
 
 		// add the current read to the output data
 		// since all dhtData array where set to 0 at the start, 
@@ -160,6 +177,8 @@ int DHT::readDHT() {
 		if (bitInx == 0) { bitInx = 7; ++byteInx; }
 		else bitInx--;
 	}
+
+	taskEXIT_CRITICAL(&mux);
 
 	// == get humidity from Data[0] and Data[1] ==========================
 

@@ -16,6 +16,8 @@
 #define DHT_CHECKSUM_ERROR -1
 #define DHT_TIMEOUT_ERROR -2
 
+static portMUX_TYPE mux = portMUX_INITIALIZER_UNLOCKED;
+
 class DHT : public Device {
 	private:
 		uint8_t dht_pin = 0;

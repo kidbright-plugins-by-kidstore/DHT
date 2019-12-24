@@ -17,7 +17,7 @@ void DHT::init(void) {
 
 	tickcnt = get_tickcnt() + 600;
 
-	esp_log_level_set("*", ESP_LOG_INFO);
+	// esp_log_level_set("*", ESP_LOG_INFO);
 }
 
 void DHT::init(uint8_t type) {
@@ -184,11 +184,11 @@ int DHT::readDHT() {
 		this->temperature *= -1;
 
 
-	ESP_LOGI( TAG, "Data 0 = %d", dhtData[0] );
-	ESP_LOGI( TAG, "Data 1 = %d", dhtData[1] );
-	ESP_LOGI( TAG, "Data 2 = %d", dhtData[2] );
-	ESP_LOGI( TAG, "Data 3 = %d", dhtData[3] );
-	ESP_LOGI( TAG, "Data 4 = %d", dhtData[4] );
+	// ESP_LOGI( TAG, "Data 0 = %d", dhtData[0] );
+	// ESP_LOGI( TAG, "Data 1 = %d", dhtData[1] );
+	// ESP_LOGI( TAG, "Data 2 = %d", dhtData[2] );
+	// ESP_LOGI( TAG, "Data 3 = %d", dhtData[3] );
+	// ESP_LOGI( TAG, "Data 4 = %d", dhtData[4] );
 
 
 	// == verify if checksum is ok ===========================================
